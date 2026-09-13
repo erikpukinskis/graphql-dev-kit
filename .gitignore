@@ -1,0 +1,9 @@
+yarn-error.log
+vendor
+dist
+.DS_Store
+node_modules
+.pnp.*
+.yarn/*
+.yalc
+yalc.lock

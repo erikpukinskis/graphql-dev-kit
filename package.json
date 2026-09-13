@@ -1,0 +1,73 @@
+{
+  "name": "graphql-dev-kit",
+  "version": "0.1.0",
+  "license": "UNLICENSED",
+  "packageManager": "yarn@1.22.19",
+  "main": "./dist/lib.umd.js",
+  "module": "./dist/lib.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/lib.es.js",
+      "require": "./dist/lib.umd.js"
+    },
+    "./test": {
+      "types": "./dist/test.d.ts",
+      "import": "./dist/test.es.js",
+      "require": "./dist/test.umd.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "test": [
+        "dist/test.d.ts"
+      ]
+    }
+  },
+  "dependencies": {
+    "@graphql-typed-document-node/core": "^3.2.0",
+    "light-my-request": "^6.0.0",
+    "supertest": "^6.3.3",
+    "zod": "^3.24.1"
+  },
+  "peerDependencies": {
+    "graphql": ">=14.0.0",
+    "msw": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/supertest": "^6.0.2",
+    "@typescript-eslint/eslint-plugin": "5.46.0",
+    "@typescript-eslint/parser": "^8.70.0",
+    "eslint": "8.29.0",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-import": "^2.32.0",
+    "graphql": "^16.6.0",
+    "msw": "^2.7.0",
+    "prettier": "2.8.1",
+    "tsc-alias": "^1.9.5",
+    "typescript": "4.9.4",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.0"
+  },
+  "scripts": {
+    "all": "yarn && yarn build && yarn fix && yarn check:types && yarn test && echo `echo 8J+OiSBEaWQgYWxs | base64 -d`",
+    "build": "rm -rf dist && yarn build:lib && yarn build:test && yarn build:types",
+    "build:lib": "vite build --config vite.lib.config.js --mode development",
+    "build:test": "vite build --config vite.test-kit.config.js --mode development",
+    "build:types": "tsc --declaration --emitDeclarationOnly -p tsconfig.dist.json --skipLibCheck && cp dist/index.d.ts dist/lib.umd.d.ts && cp dist/index.d.ts dist/lib.es.d.ts && cp dist/test.d.ts dist/test.umd.d.ts && cp dist/test.d.ts dist/test.es.d.ts",
+    "check:format": "prettier --check --ignore-path .gitignore .",
+    "check:lint": "eslint --ignore-path .gitignore --no-error-on-unmatched-pattern .; if [ $? -eq 0 ]; then echo 8J+OiSBObyBsaW50IGluIHRoaXMgY29kZSEKCg== | base64 -d; else exit 1; fi",
+    "check:types": "tsc --noEmit -p tsconfig.json; if [ $? -eq 0 ]; then echo 8J+OiSBUeXBlcyBhcmUgZ29vZCEKCg== | base64 -d; else exit 1; fi",
+    "confgen": "npx confgen@latest --name GraphQLDevKit @lib yarn typescript eslint prettier git codespaces vite githubActions vitest dist:lib",
+    "fix": "yarn fix:lint && yarn fix:format",
+    "fix:format": "prettier --write --ignore-path .gitignore .",
+    "fix:lint": "eslint --ignore-path .gitignore --no-error-on-unmatched-pattern . --fix; if [ $? -eq 0 ]; then echo 8J+OiSBObyBsaW50IGluIHRoaXMgY29kZSEKCg== | base64 -d; else exit 1; fi",
+    "test": "vitest run --config vite.test.config.js",
+    "watch:test": "vitest watch --config vite.test.config.js"
+  }
+}

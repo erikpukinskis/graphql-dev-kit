@@ -1,0 +1,19 @@
+name: lint
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+      - name: Set up Yarn cache
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+      - run: yarn check:lint
+concurrency:
+  group: check-lint
+  cancel-in-progress: true
+on: push

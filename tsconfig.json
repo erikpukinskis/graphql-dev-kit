@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2022"],
+    "target": "ES2022",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["lib/*"],
+      "*": ["lib/*"]
+    },
+    "types": ["node"],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "downlevelIteration": true,
+    "outDir": "dist"
+  },
+  "include": ["lib"]
+}
