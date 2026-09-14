@@ -1,9 +1,10 @@
 yarn-error.log
-vendor
-dist
-.DS_Store
-node_modules
 .pnp.*
 .yarn/*
+vendor
+dist
+node_modules
+.DS_Store
+.npmrc
 .yalc
 yalc.lock

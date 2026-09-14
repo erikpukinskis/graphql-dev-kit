@@ -3,10 +3,8 @@
   "tasks": [
     {
       "label": "TypeScript Watch",
-      "type": "typescript",
-      "tsconfig": "tsconfig.check.json",
-      "option": "watch",
-      "problemMatcher": ["$tsc-watch"],
+      "type": "shell",
+      "command": "yarn tsc --watch --project tsconfig.json",
       "group": "build",
       "runOptions": {
         "runOn": "folderOpen"
