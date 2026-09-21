@@ -14,7 +14,8 @@
     "strict": true,
     "skipLibCheck": true,
     "downlevelIteration": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "noEmit": true
   },
   "include": ["lib"]
 }
